@@ -190,4 +190,22 @@ public class RPLineMap extends LineMap {
 	public boolean inside(Point p) {
 		return super.inside(p);
 	}
+
+	/**
+	 * Returns true if any given line intersects with any line in the map. This
+	 * could be made faster for large maps.
+	 * 
+	 * @param _lines
+	 * @return
+	 */
+	public boolean intersectsWith(Line[] _lines) {
+		for (Line mapLine : getLines()) {
+			for (Line inputLine : _lines) {
+				if (mapLine.intersectsLine(inputLine)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

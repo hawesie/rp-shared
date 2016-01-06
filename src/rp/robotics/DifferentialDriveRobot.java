@@ -1,7 +1,6 @@
 package rp.robotics;
 
 import lejos.geom.Line;
-import lejos.geom.Rectangle;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.localization.OdometryPoseProvider;
 import lejos.robotics.localization.PoseProvider;
@@ -15,6 +14,9 @@ public class DifferentialDriveRobot implements PoseProvider,
 		WheeledRobotDescription {
 
 	private final WheeledRobotConfiguration m_config;
+
+	private boolean m_inCollision = false;
+	private Pose m_collisionPose = null;
 
 	public float getWheelDiameter() {
 		return m_config.getWheelDiameter();
@@ -51,7 +53,11 @@ public class DifferentialDriveRobot implements PoseProvider,
 	 */
 	@Override
 	public Pose getPose() {
-		return m_odomPose.getPose();
+		if (!m_inCollision) {
+			return m_odomPose.getPose();
+		} else {
+			return m_collisionPose;
+		}
 	}
 
 	/***
@@ -70,5 +76,16 @@ public class DifferentialDriveRobot implements PoseProvider,
 	public Line[] getFootprint() {
 		return m_config.getFootprint();
 	}
+
+	// When the robot is in collision the wheels keep turning, but the pose of
+	// the robot doesn't change
+	public void startCollision() {
+		if (!m_inCollision) {
+			m_collisionPose = getPose();
+			m_inCollision = true;
+		}
+	}
+	
+	
 
 }
