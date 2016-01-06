@@ -1,5 +1,7 @@
 package rp.robotics;
 
+import lejos.geom.Line;
+import lejos.geom.Rectangle;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.localization.OdometryPoseProvider;
 import lejos.robotics.localization.PoseProvider;
@@ -14,11 +16,11 @@ public class DifferentialDriveRobot implements PoseProvider,
 
 	private final WheeledRobotConfiguration m_config;
 
-	public double getWheelDiameter() {
+	public float getWheelDiameter() {
 		return m_config.getWheelDiameter();
 	}
 
-	public double getTrackWidth() {
+	public float getTrackWidth() {
 		return m_config.getTrackWidth();
 	}
 
@@ -62,6 +64,11 @@ public class DifferentialDriveRobot implements PoseProvider,
 
 	public DifferentialPilot getDifferentialPilot() {
 		return m_pilot;
+	}
+
+	@Override
+	public Line[] getFootprint() {
+		return m_config.getFootprint();
 	}
 
 }
