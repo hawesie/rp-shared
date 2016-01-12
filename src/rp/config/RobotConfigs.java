@@ -20,18 +20,18 @@ public class RobotConfigs {
 	 */
 	public final static int NXTCAM_IMAGE_HEIGHT = 144;
 
-	
 	/**
-	 * Configuration for Nick's Expressbot build. The numbers may be different for you. Measurements in mm. 
+	 * Configuration for Nick's Expressbot build. The numbers may be different
+	 * for you. Measurements in mm.
 	 */
 	public static final WheeledRobotConfiguration EXPRESS_BOT = new WheeledRobotConfiguration(
-			56, 163, 210, Motor.A, Motor.C);
+			0.056f, 0.163f, 0.210f, Motor.B, Motor.C);
 
 	/**
-	 * Configuration for Nick's Castorbot build. The numbers may be different for you. Measurements in mm. 
+	 * Configuration for Nick's Castorbot build. The numbers may be different
+	 * for you. Measurements in mm.
 	 */
 	public static final WheeledRobotConfiguration CASTOR_BOT = new WheeledRobotConfiguration(
-			56, 120, 230, Motor.C, Motor.A);
+			0.056f, 0.120f, 0.230f, Motor.C, Motor.A);
 
-	
 }

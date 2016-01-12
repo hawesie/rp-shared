@@ -10,6 +10,15 @@ import rp.config.WheeledRobotConfiguration;
 import rp.config.WheeledRobotDescription;
 import rp.systems.WheeledRobotSystem;
 
+/**
+ * An abstraction for a differential drive robot. If you use this class in your
+ * code you should be able to write control code that is independent of a
+ * particular robot design. This class can be used on both the robot and in
+ * simulation.
+ * 
+ * @author Nick Hawes
+ *
+ */
 public class DifferentialDriveRobot implements PoseProvider,
 		WheeledRobotDescription {
 
@@ -85,7 +94,5 @@ public class DifferentialDriveRobot implements PoseProvider,
 			m_inCollision = true;
 		}
 	}
-	
-	
 
 }
