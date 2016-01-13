@@ -1,5 +1,7 @@
 package rp.config;
 
+import java.util.ArrayList;
+
 import lejos.geom.Line;
 import lejos.robotics.RegulatedMotor;
 
@@ -21,4 +23,18 @@ public interface WheeledRobotDescription {
 	 * @return
 	 */
 	public Line[] getFootprint();
+
+	/**
+	 * Returns the relative footprint of any touch sensors.
+	 * 
+	 * @return
+	 */
+	public ArrayList<Line[]> getTouchSensors();
+
+	/**
+	 * Returns the description of any range sensors.
+	 * 
+	 * @return
+	 */
+	public ArrayList<RangeScannerDescription> getRangeScanners();
 }

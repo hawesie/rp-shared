@@ -1,13 +1,16 @@
 package rp.robotics;
 
+import java.util.ArrayList;
+
 import lejos.geom.Line;
 import lejos.robotics.RegulatedMotor;
-import lejos.robotics.localization.OdometryPoseProvider;
 import lejos.robotics.localization.PoseProvider;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.navigation.Pose;
+import rp.config.RangeScannerDescription;
 import rp.config.WheeledRobotConfiguration;
 import rp.config.WheeledRobotDescription;
+import rp.robotics.localisation.ContinuousOdometryPoseProvider;
 import rp.systems.WheeledRobotSystem;
 
 /**
@@ -49,12 +52,12 @@ public class DifferentialDriveRobot implements PoseProvider,
 
 	private final DifferentialPilot m_pilot;
 
-	private final OdometryPoseProvider m_odomPose;
+	private final ContinuousOdometryPoseProvider m_odomPose;
 
 	public DifferentialDriveRobot(WheeledRobotConfiguration _config) {
 		m_config = _config;
 		m_pilot = new WheeledRobotSystem(m_config).getPilot();
-		m_odomPose = new OdometryPoseProvider(m_pilot);
+		m_odomPose = new ContinuousOdometryPoseProvider(m_pilot);
 	}
 
 	/**
@@ -93,6 +96,16 @@ public class DifferentialDriveRobot implements PoseProvider,
 			m_collisionPose = getPose();
 			m_inCollision = true;
 		}
+	}
+
+	@Override
+	public ArrayList<Line[]> getTouchSensors() {
+		return m_config.getTouchSensors();
+	}
+
+	@Override
+	public ArrayList<RangeScannerDescription> getRangeScanners() {
+		return m_config.getRangeScanners();
 	}
 
 }

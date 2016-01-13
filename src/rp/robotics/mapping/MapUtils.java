@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import lejos.geom.Line;
 import lejos.geom.Rectangle;
-import lejos.robotics.mapping.LineMap;
 import lejos.robotics.navigation.Move;
 import lejos.robotics.navigation.Pose;
 

@@ -40,4 +40,11 @@ public class GeometryUtils {
 		}
 	}
 
+	public static Pose transform(Pose _input, Pose _transform) {
+		Pose out = new Pose(_input.getX(), _input.getY(), _input.getHeading());
+		out.translate(_transform.getX(), _transform.getY());
+		out.rotateUpdate(_transform.getHeading());
+		return out;
+	}
+
 }

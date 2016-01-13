@@ -1,8 +1,11 @@
 package rp.robotics.mapping;
 
+import rp.config.RangeScannerDescription;
+import rp.geom.GeometryUtils;
 import lejos.geom.Line;
 import lejos.geom.Point;
 import lejos.geom.Rectangle;
+import lejos.robotics.RangeReadings;
 import lejos.robotics.mapping.LineMap;
 import lejos.robotics.navigation.Pose;
 
@@ -58,10 +61,10 @@ public class RPLineMap extends LineMap {
 
 			if (p == null) {
 				// Does not intersect
-				// System.out.println(i + " checking against: " + lines[i].x1 +
-				// " "
-				// + lines[i].y1 + ", " + lines[i].x2 + " " + lines[i].y2);
-
+				// System.out.println(i + " checking against: " + lines[i].x1
+				// + " " + lines[i].y1 + ", " + lines[i].x2 + " "
+				// + lines[i].y2);
+				//
 				// System.out.println("does not intersect");
 				continue;
 			}
@@ -138,13 +141,6 @@ public class RPLineMap extends LineMap {
 			x = a1 * y + b1;
 		}
 
-		// FIX: The math above creates slightly odd results that are almost
-		// correct and look fine after rounding to nearest int. This could add
-		// inaccuracies later but nothing beyond what the robot is already
-		// facing.
-		x = Math.round(x);
-		y = Math.round(y);
-
 		// System.out.println("here: " + x + "," + y);
 
 		// Check that the point of intersection is within both line segments
@@ -207,5 +203,51 @@ public class RPLineMap extends LineMap {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Obtain range readings from the map at the predefined angles relative to
+	 * the robot
+	 */
+	public RangeReadings takeReadings(Pose _robotPose,
+			RangeScannerDescription _ranger) {
+
+		float[] readingAngles = _ranger.getReadingAngles();
+
+		RangeReadings readings = new RangeReadings(readingAngles.length);
+
+		// the pose to use for taking range readings
+		Pose readingPose = GeometryUtils.transform(_robotPose,
+				_ranger.getScannerPose());
+
+		float readingPoseHeading = readingPose.getHeading();
+
+		for (int i = 0; i < readingAngles.length; i++) {
+
+			// rotate the reading pose to the angle of the sensor
+			readingPose.setHeading(readingPoseHeading + readingAngles[i]);
+
+			// and take a reading from there
+			float mapRange = range(readingPose);
+
+//			System.out.println(mapRange);
+//			System.out.println(_ranger.getMaxRange());
+//			System.out.println(_ranger.getMinRange());
+
+			// bound reading to configured parameters
+			if (mapRange > _ranger.getMaxRange()) {
+				mapRange = 255;
+			} else if (mapRange < _ranger.getMinRange()) {
+				mapRange = 0;
+			}
+
+			readings.setRange(i, readingAngles[i], mapRange);
+
+//			System.out.println(mapRange);
+
+		}
+
+		return readings;
+
 	}
 }
