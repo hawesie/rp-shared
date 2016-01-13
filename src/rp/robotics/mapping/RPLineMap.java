@@ -236,7 +236,7 @@ public class RPLineMap extends LineMap {
 
 			// bound reading to configured parameters
 			if (mapRange > _ranger.getMaxRange()) {
-				mapRange = 255;
+				mapRange = 2.55f;
 			} else if (mapRange < _ranger.getMinRange()) {
 				mapRange = 0;
 			}
