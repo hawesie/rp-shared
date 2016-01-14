@@ -32,6 +32,6 @@ public class RobotConfigs {
 	 * for you. Measurements in mm.
 	 */
 	public static final WheeledRobotConfiguration CASTOR_BOT = new WheeledRobotConfiguration(
-			0.056f, 0.120f, 0.230f, Motor.C, Motor.A);
+			0.056f, 0.120f, 0.230f, Motor.B, Motor.C);
 
 }
