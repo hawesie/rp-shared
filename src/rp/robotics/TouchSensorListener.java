@@ -27,6 +27,6 @@ public interface TouchSensorListener {
 	 * 
 	 * @param _e
 	 */
-	void sensorBumoed(TouchSensorEvent _e);
+	void sensorBumped(TouchSensorEvent _e);
 
 }

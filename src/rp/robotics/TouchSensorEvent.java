@@ -12,7 +12,6 @@ public class TouchSensorEvent {
 	private final int m_newValue;
 
 	public TouchSensorEvent(int _oldValue, int _newValue) {
-		super();
 		m_oldValue = _oldValue;
 		m_newValue = _newValue;
 	}

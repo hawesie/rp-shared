@@ -8,40 +8,37 @@ import lejos.robotics.navigation.Pose;
  * @author nah
  *
  */
-public class RangeScannerDescription {
-	private final Pose m_scannerPose;
+public class RangeScannerDescription extends RangeFinderDescription {
+
 	private final float[] m_readingAngles;
-	private final float m_maxRange;
-	private final float m_minRange;
 
 	/**
 	 * 
 	 * @param _scannerPose
-	 *            Pose of the scanner
+	 *            Pose of the scanner relative to the robot's centre point.
+	 * 
+	 * @param _maxRange
+	 *            The maximum range of the sensor.
+	 * 
+	 * @param _minRange
+	 *            The minimum range of the sensor.
+	 * 
+	 * @param _noise
+	 *            The absolution value of the noise present in this sensor. For
+	 *            example a value of 0.03 means noise of +/-3cm.
+	 * 
+	 *
 	 * @param _readingAngles
 	 *            Directions to take readings in relative to pose.
 	 */
-	public RangeScannerDescription(Pose _scannerPose, float[] _readingAngles,
-			float _maxRange, float _minRange) {
-		m_scannerPose = _scannerPose;
+	public RangeScannerDescription(Pose _scannerPose, float _maxRange,
+			float _minRange, float _noise, float[] _readingAngles) {
+		super(_scannerPose, _maxRange, _minRange, _noise);
 		m_readingAngles = _readingAngles;
-		m_maxRange = _maxRange;
-		m_minRange = _minRange;
 	}
 
 	public float[] getReadingAngles() {
 		return m_readingAngles;
 	}
 
-	public Pose getScannerPose() {
-		return m_scannerPose;
-	}
-
-	public float getMaxRange() {
-		return m_maxRange;
-	}
-
-	public float getMinRange() {
-		return m_minRange;
-	}
 }

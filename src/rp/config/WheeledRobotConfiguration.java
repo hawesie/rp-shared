@@ -132,8 +132,9 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 	 * Add a range scanner which takes a single reading and is located at the
 	 * centre of the robot facing forward.
 	 */
-	public void addRangeScanner() {
-		addRangeScanner(new Pose(0f, 0f, 0f), new float[] { 0f }, 2.40f, 0.03f);
+	public RangeScannerDescription addRangeScanner() {
+		return addRangeScanner(new Pose(0f, 0f, 0f), new float[] { 0f }, 2.40f,
+				0.03f, 0.03f);
 	}
 
 	/**
@@ -144,14 +145,19 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 	 * @param _readingAngles
 	 *            Directions to take readings in relative to pose.
 	 */
-	public void addRangeScanner(Pose _scannerPose, float[] _readingAngles,
-			float _maxRange, float _minRange) {
+	public RangeScannerDescription addRangeScanner(Pose _scannerPose,
+			float[] _readingAngles, float _maxRange, float _minRange,
+			float _noise) {
 		if (m_rangeScanners == null) {
 			m_rangeScanners = new ArrayList<RangeScannerDescription>(1);
 		}
 
-		m_rangeScanners.add(new RangeScannerDescription(_scannerPose,
-				_readingAngles, _maxRange, _minRange));
+		RangeScannerDescription desc = new RangeScannerDescription(
+				_scannerPose, _maxRange, _minRange, _noise, _readingAngles);
+
+		m_rangeScanners.add(desc);
+
+		return desc;
 	}
 
 	@Override
