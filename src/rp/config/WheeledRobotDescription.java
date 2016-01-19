@@ -36,6 +36,8 @@ public interface WheeledRobotDescription {
 	public RegulatedMotor getLeftWheel();
 
 	public RegulatedMotor getRightWheel();
+	
+	public boolean isReversed();
 
 	/**
 	 * Returns a shape which describes the outline of the robot relative to its
