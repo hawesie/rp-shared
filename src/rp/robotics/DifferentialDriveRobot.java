@@ -45,6 +45,10 @@ public class DifferentialDriveRobot implements PoseProvider,
 	public RegulatedMotor getRightWheel() {
 		return m_config.getRightWheel();
 	}
+	
+	public boolean isReversed(){
+		return m_config.isReversed();
+	}
 
 	public double getRobotLength() {
 		return m_config.getRobotLength();
