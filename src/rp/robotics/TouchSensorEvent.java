@@ -7,24 +7,24 @@ package rp.robotics;
 public class TouchSensorEvent {
 
 	// The value before the change
-	private final int m_oldValue;
+	private final float m_oldValue;
 	// The value after the change
-	private final int m_newValue;
+	private final float m_newValue;
 
-	public TouchSensorEvent(int _oldValue, int _newValue) {
+	public TouchSensorEvent(float _oldValue, float _newValue) {
 		m_oldValue = _oldValue;
 		m_newValue = _newValue;
 	}
 
-	public int getNewValue() {
+	public float getNewValue() {
 		return m_newValue;
 	}
 
-	public int getOldValue() {
+	public float getOldValue() {
 		return m_oldValue;
 	}
 
-	public int getValueChange() {
+	public float getValueChange() {
 		return getNewValue() - getOldValue();
 	}
 

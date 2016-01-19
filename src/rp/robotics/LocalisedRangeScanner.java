@@ -1,5 +1,6 @@
 package rp.robotics;
 
+import rp.config.RangeScannerDescription;
 import lejos.robotics.RangeFinder;
 import lejos.robotics.RangeScanner;
 import lejos.robotics.localization.PoseProvider;
@@ -15,5 +16,7 @@ import lejos.robotics.localization.PoseProvider;
  */
 public interface LocalisedRangeScanner extends PoseProvider, RangeScanner,
 		RangeFinder {
+
+	public RangeScannerDescription getDescription();
 
 }
