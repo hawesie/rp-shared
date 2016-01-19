@@ -33,5 +33,7 @@ public class RobotConfigs {
 	 */
 	public static final WheeledRobotConfiguration CASTOR_BOT = new WheeledRobotConfiguration(
 			0.056f, 0.120f, 0.230f, Motor.B, Motor.C);
+	
+	
 
 }
