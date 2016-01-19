@@ -30,7 +30,7 @@ public class WheeledRobotSystem {
 		if (m_differentialPilot == null) {
 			m_differentialPilot = new DifferentialPilot(
 					m_config.getWheelDiameter(), m_config.getTrackWidth(),
-					m_config.getLeftWheel(), m_config.getRightWheel());
+					m_config.getLeftWheel(), m_config.getRightWheel(), m_config.isReversed());
 		}
 		return m_differentialPilot;
 	}
@@ -42,6 +42,5 @@ public class WheeledRobotSystem {
 	public WheeledRobotConfiguration getConfig() {
 		return m_config;
 	}
-
 	
 }
