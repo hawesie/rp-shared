@@ -60,38 +60,16 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 	public WheeledRobotConfiguration(float _wheelDiameter, float _trackWidth,
 			float _robotLength, RegulatedMotor _leftWheel,
 			RegulatedMotor _rightWheel) {
-		super();
-		m_wheelDiameter = _wheelDiameter;
-		m_trackWidth = _trackWidth;
-		m_robotLength = _robotLength;
-		m_leftWheel = _leftWheel;
-		m_rightWheel = _rightWheel;
-		m_reversed = false;
-
-		// assuming pose 0,0,0 is in the middle of the robot,this defines
-		// the footprint of the robot. We'll start with a square based on track
-		// width and robot length. These are done in relative coordinates to the
-		// robot centre.
-
-		float halfX = m_robotLength / 2;
-		float halfY = m_trackWidth / 2;
-
-		m_footprint = new Line[] {
-				// front
-				new Line(halfX, halfY, halfX, -halfY),
-				// back
-				new Line(-halfX, halfY, -halfX, -halfY),
-				// top
-				new Line(-halfX, halfY, halfX, halfY),
-				// bottom
-				new Line(-halfX, -halfY, halfX, -halfY),
-
-		};
+		
+		this(_wheelDiameter, _trackWidth,
+				_robotLength, _leftWheel,
+				_rightWheel, false);
 	}
 
 	public WheeledRobotConfiguration(float _wheelDiameter, float _trackWidth,
 			float _robotLength, RegulatedMotor _leftWheel,
 			RegulatedMotor _rightWheel, boolean _reversed) {
+		
 		super();
 		m_wheelDiameter = _wheelDiameter;
 		m_trackWidth = _trackWidth;
