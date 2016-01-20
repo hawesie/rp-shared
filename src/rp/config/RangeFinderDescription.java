@@ -15,6 +15,7 @@ public class RangeFinderDescription {
 	private final float m_maxRange;
 	private final float m_minRange;
 	private final float m_noise;
+	private final float m_rate;
 
 	public static final float OUT_OF_RANGE_VALUE = Float.NaN;
 
@@ -33,13 +34,18 @@ public class RangeFinderDescription {
 	 *            The absolution value of the noise present in this sensor. For
 	 *            example a value of 0.03 means noise of +/-3cm.
 	 * 
+	 * @param _rate
+	 *            The rate (in Hz) at which the sensor is able to provide new
+	 *            information.
+	 * 
 	 */
 	public RangeFinderDescription(Pose _scannerPose, float _maxRange,
-			float _minRange, float _noise) {
+			float _minRange, float _noise, float _rate) {
 		m_scannerPose = _scannerPose;
 		m_maxRange = _maxRange;
 		m_minRange = _minRange;
 		m_noise = _noise;
+		m_rate = _rate;
 	}
 
 	/**
@@ -67,5 +73,12 @@ public class RangeFinderDescription {
 	 */
 	public float getNoise() {
 		return m_noise;
+	}
+
+	/**
+	 * The rate (in Hz) at which the sensor is able to provide new information.
+	 * */
+	public float getRate() {
+		return m_rate;
 	}
 }

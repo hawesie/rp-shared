@@ -134,7 +134,7 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 	 */
 	public RangeScannerDescription addRangeScanner() {
 		return addRangeScanner(new Pose(0f, 0f, 0f), new float[] { 0f }, 2.40f,
-				0.03f, 0.03f);
+				0.03f, 0.03f, 10f);
 	}
 
 	/**
@@ -147,13 +147,13 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 	 */
 	public RangeScannerDescription addRangeScanner(Pose _scannerPose,
 			float[] _readingAngles, float _maxRange, float _minRange,
-			float _noise) {
+			float _noise, float _rate) {
 		if (m_rangeScanners == null) {
 			m_rangeScanners = new ArrayList<RangeScannerDescription>(1);
 		}
 
 		RangeScannerDescription desc = new RangeScannerDescription(
-				_scannerPose, _maxRange, _minRange, _noise, _readingAngles);
+				_scannerPose, _maxRange, _minRange, _noise, _rate, _readingAngles);
 
 		m_rangeScanners.add(desc);
 

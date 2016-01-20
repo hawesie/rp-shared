@@ -32,8 +32,8 @@ public class RangeScannerDescription extends RangeFinderDescription {
 	 *            Directions to take readings in relative to pose.
 	 */
 	public RangeScannerDescription(Pose _scannerPose, float _maxRange,
-			float _minRange, float _noise, float[] _readingAngles) {
-		super(_scannerPose, _maxRange, _minRange, _noise);
+			float _minRange, float _noise, float _rate, float[] _readingAngles) {
+		super(_scannerPose, _maxRange, _minRange, _noise, _rate);
 		m_readingAngles = _readingAngles;
 	}
 
