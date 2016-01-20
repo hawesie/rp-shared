@@ -20,11 +20,14 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 	private final float m_robotLength;
 	private final RegulatedMotor m_leftWheel;
 	private final RegulatedMotor m_rightWheel;
-
+	private final boolean m_reversed;
+	
 	private final Line[] m_footprint;
 
 	private ArrayList<Line[]> m_touchSensors;
 	private ArrayList<RangeScannerDescription> m_rangeScanners;
+	
+	
 
 	public float getWheelDiameter() {
 		return m_wheelDiameter;
@@ -49,16 +52,31 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 	public Line[] getFootprint() {
 		return m_footprint;
 	}
+	
+	public boolean isReversed() {
+		return m_reversed;
+	}
 
 	public WheeledRobotConfiguration(float _wheelDiameter, float _trackWidth,
 			float _robotLength, RegulatedMotor _leftWheel,
 			RegulatedMotor _rightWheel) {
+		
+		this(_wheelDiameter, _trackWidth,
+				_robotLength, _leftWheel,
+				_rightWheel, false);
+	}
+
+	public WheeledRobotConfiguration(float _wheelDiameter, float _trackWidth,
+			float _robotLength, RegulatedMotor _leftWheel,
+			RegulatedMotor _rightWheel, boolean _reversed) {
+		
 		super();
 		m_wheelDiameter = _wheelDiameter;
 		m_trackWidth = _trackWidth;
 		m_robotLength = _robotLength;
 		m_leftWheel = _leftWheel;
 		m_rightWheel = _rightWheel;
+		m_reversed = _reversed;
 
 		// assuming pose 0,0,0 is in the middle of the robot,this defines
 		// the footprint of the robot. We'll start with a square based on track
@@ -80,7 +98,7 @@ public class WheeledRobotConfiguration implements WheeledRobotDescription {
 
 		};
 	}
-
+	
 	/**
 	 * Adds a touch sensor to the front of the robot.
 	 */
