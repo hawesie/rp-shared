@@ -18,15 +18,18 @@ public class ContinuousOdometryPoseProvider implements PoseProvider,
 
 	private float x = 0, y = 0, heading = 0;
 	private float angle0, distance0;
-	MoveProvider mp;
+	MoveProvider m_mover;
 	boolean current = true;
+	private long m_lastUpdate;
+	private final long m_updateDelay = 50;
 
 	/**
 	 * Allocates a new OdometryPoseProivder and registers it with the
-	 * MovePovider as a listener.
+	 * MovePovider as a listener. Provides new poses at 20hz.
 	 */
 	public ContinuousOdometryPoseProvider(MoveProvider mp) {
 		mp.addMoveListener(this);
+		m_lastUpdate = System.currentTimeMillis();
 	}
 
 	/**
@@ -37,9 +40,13 @@ public class ContinuousOdometryPoseProvider implements PoseProvider,
 	 * @return pose
 	 */
 	public synchronized Pose getPose() {
-		// TODO add throttling
-		if (mp != null) {
-			updatePose(mp.getMovement());
+
+		if (m_mover != null) {
+			long currentTime = System.currentTimeMillis();
+			if (currentTime - m_lastUpdate > m_updateDelay) {
+				updatePose(m_mover.getMovement());
+				m_lastUpdate = currentTime;
+			}
 		}
 		return new Pose(x, y, heading);
 	}
@@ -56,7 +63,7 @@ public class ContinuousOdometryPoseProvider implements PoseProvider,
 		angle0 = 0;
 		distance0 = 0;
 		current = false;
-		this.mp = mp;
+		this.m_mover = mp;
 	}
 
 	public synchronized void setPose(Pose aPose) {
