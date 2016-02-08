@@ -17,7 +17,12 @@ public class RangeFinderDescription {
 	private final float m_noise;
 	private final float m_rate;
 
-	public static final float OUT_OF_RANGE_VALUE = Float.NaN;
+	public static final float OUT_OF_RANGE_VALUE = Float.POSITIVE_INFINITY;
+
+	public static boolean isValidReading(float _reading) {
+		return !Float.isNaN(_reading) && !Float.isInfinite(_reading)
+				&& _reading >= 0;
+	}
 
 	/**
 	 * 

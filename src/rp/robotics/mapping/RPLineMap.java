@@ -1,5 +1,6 @@
 package rp.robotics.mapping;
 
+import rp.config.RangeFinderDescription;
 import rp.config.RangeScannerDescription;
 import rp.geom.GeometryUtils;
 import lejos.geom.Line;
@@ -57,7 +58,7 @@ public class RPLineMap extends LineMap {
 		Line[] lines = getLines();
 		for (int i = 0; i < lines.length; i++) {
 
-			Point p = intersectsAt(lines[i], l);
+			Point p = RPLineMap.intersectsAt(lines[i], l);
 
 			if (p == null) {
 				// Does not intersect
@@ -99,7 +100,7 @@ public class RPLineMap extends LineMap {
 	 * @return the point of intersection or null if the lines do not intercept
 	 *         or are coincident
 	 */
-	public Point intersectsAt(Line l1, Line l2) {
+	public static Point intersectsAt(Line l1, Line l2) {
 		float x, y, a1, a2, b1, b2;
 
 		if (l1.y2 == l1.y1 && l2.y2 == l2.y1) {
@@ -144,16 +145,16 @@ public class RPLineMap extends LineMap {
 		// System.out.println("here: " + x + "," + y);
 
 		// Check that the point of intersection is within both line segments
-		if (!between(x, l1.x1, l1.x2)) {
+		if (!RPLineMap.between(x, l1.x1, l1.x2)) {
 			return null;
 		}
-		if (!between(y, l1.y1, l1.y2)) {
+		if (!RPLineMap.between(y, l1.y1, l1.y2)) {
 			return null;
 		}
-		if (!between(x, l2.x1, l2.x2)) {
+		if (!RPLineMap.between(x, l2.x1, l2.x2)) {
 			return null;
 		}
-		if (!between(y, l2.y1, l2.y2)) {
+		if (!RPLineMap.between(y, l2.y1, l2.y2)) {
 			return null;
 		}
 		return new Point(x, y);
@@ -165,7 +166,7 @@ public class RPLineMap extends LineMap {
 	 * 
 	 * Return true iff x is between x1 and x2
 	 */
-	private boolean between(float x, float x1, float x2) {
+	public static boolean between(float x, float x1, float x2) {
 		if (x1 <= x2 && x >= x1 && x <= x2) {
 			return true;
 		}
@@ -230,20 +231,20 @@ public class RPLineMap extends LineMap {
 			// and take a reading from there
 			float mapRange = range(readingPose);
 
-//			System.out.println(mapRange);
-//			System.out.println(_ranger.getMaxRange());
-//			System.out.println(_ranger.getMinRange());
+			// System.out.println(mapRange);
+			// System.out.println(_ranger.getMaxRange());
+			// System.out.println(_ranger.getMinRange());
 
 			// bound reading to configured parameters
 			if (mapRange > _ranger.getMaxRange()) {
-				mapRange = 2.55f;
+				mapRange = RangeFinderDescription.OUT_OF_RANGE_VALUE;
 			} else if (mapRange < _ranger.getMinRange()) {
 				mapRange = 0;
 			}
 
 			readings.setRange(i, readingAngles[i], mapRange);
 
-//			System.out.println(mapRange);
+			// System.out.println(mapRange);
 
 		}
 
