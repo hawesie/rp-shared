@@ -1,14 +1,13 @@
 package rp.robotics.mapping;
 
-import rp.config.RangeFinderDescription;
-import rp.config.RangeScannerDescription;
-import rp.geom.GeometryUtils;
 import lejos.geom.Line;
 import lejos.geom.Point;
 import lejos.geom.Rectangle;
 import lejos.robotics.RangeReadings;
-import lejos.robotics.mapping.LineMap;
 import lejos.robotics.navigation.Pose;
+import rp.config.RangeFinderDescription;
+import rp.config.RangeScannerDescription;
+import rp.geom.GeometryUtils;
 
 /**
  * An extension of the leJOS LineMap containing a few bug fixes.
@@ -16,7 +15,7 @@ import lejos.robotics.navigation.Pose;
  * @author Nick Hawes
  * 
  */
-public class RPLineMap extends LineMap {
+public class LineMap extends lejos.robotics.mapping.LineMap {
 
 	// the longest line possible on the map. Used to check for out of range
 	// readings in range()
@@ -29,7 +28,7 @@ public class RPLineMap extends LineMap {
 	 * @param _boundingRect
 	 *            The bounding rectangle of the whole map
 	 */
-	public RPLineMap(Line[] _lines, Rectangle _boundingRect) {
+	public LineMap(Line[] _lines, Rectangle _boundingRect) {
 		super(_lines, _boundingRect);
 		m_largestDimension = Math
 				.max(_boundingRect.width, _boundingRect.height);
@@ -58,7 +57,7 @@ public class RPLineMap extends LineMap {
 		Line[] lines = getLines();
 		for (int i = 0; i < lines.length; i++) {
 
-			Point p = RPLineMap.intersectsAt(lines[i], l);
+			Point p = LineMap.intersectsAt(lines[i], l);
 
 			if (p == null) {
 				// Does not intersect
@@ -145,16 +144,16 @@ public class RPLineMap extends LineMap {
 		// System.out.println("here: " + x + "," + y);
 
 		// Check that the point of intersection is within both line segments
-		if (!RPLineMap.between(x, l1.x1, l1.x2)) {
+		if (!LineMap.between(x, l1.x1, l1.x2)) {
 			return null;
 		}
-		if (!RPLineMap.between(y, l1.y1, l1.y2)) {
+		if (!LineMap.between(y, l1.y1, l1.y2)) {
 			return null;
 		}
-		if (!RPLineMap.between(x, l2.x1, l2.x2)) {
+		if (!LineMap.between(x, l2.x1, l2.x2)) {
 			return null;
 		}
-		if (!RPLineMap.between(y, l2.y1, l2.y2)) {
+		if (!LineMap.between(y, l2.y1, l2.y2)) {
 			return null;
 		}
 		return new Point(x, y);

@@ -22,7 +22,7 @@ public class MapUtils {
 	 * @param _height
 	 * @return
 	 */
-	public static RPLineMap createRectangularMap(float _width, float _height) {
+	public static LineMap createRectangularMap(float _width, float _height) {
 
 		// these are the walls for the world outline
 		Line[] lines = new Line[] { new Line(0f, 0f, _width, 0f),
@@ -30,7 +30,7 @@ public class MapUtils {
 				new Line(_width, _height, 0f, _height),
 				new Line(0f, _height, 0f, 0f) };
 
-		RPLineMap map = new RPLineMap(lines, new Rectangle(0, 0, _width,
+		LineMap map = new LineMap(lines, new Rectangle(0, 0, _width,
 				_height));
 
 		return map;
@@ -76,7 +76,7 @@ public class MapUtils {
 	 * 
 	 * @return
 	 */
-	public static RPLineMap createTrainingMap() {
+	public static LineMap createTrainingMap() {
 		float height = 238;
 		float width = 366;
 
@@ -109,11 +109,11 @@ public class MapUtils {
 		Line[] lineArray = new Line[lines.size()];
 		lines.toArray(lineArray);
 
-		return new RPLineMap(lineArray, new Rectangle(0, 0, width, height));
+		return new LineMap(lineArray, new Rectangle(0, 0, width, height));
 
 	}
 
-	public static RPLineMap create2014Map1() {
+	public static LineMap create2014Map1() {
 
 		float height = 241f;
 
@@ -273,10 +273,10 @@ public class MapUtils {
 
 		lines.toArray(lineArray);
 
-		return new RPLineMap(lineArray, new Rectangle(0, 0, width, height));
+		return new LineMap(lineArray, new Rectangle(0, 0, width, height));
 	}
 
-	public static RPLineMap create2014Map2() {
+	public static LineMap create2014Map2() {
 		float height = 242;
 		float width = 306;
 
@@ -313,10 +313,10 @@ public class MapUtils {
 		Line[] lineArray = new Line[lines.size()];
 		lines.toArray(lineArray);
 
-		return new RPLineMap(lineArray, new Rectangle(0, 0, width, height));
+		return new LineMap(lineArray, new Rectangle(0, 0, width, height));
 	}
 
-	public static RPLineMap create2015Map1() {
+	public static LineMap create2015Map1() {
 
 		float height = 244f;
 		float width = 368f;
@@ -359,7 +359,7 @@ public class MapUtils {
 
 		lines.toArray(lineArray);
 
-		return new RPLineMap(lineArray, new Rectangle(0, 0, width, height));
+		return new LineMap(lineArray, new Rectangle(0, 0, width, height));
 	}
 
 	/**
