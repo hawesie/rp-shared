@@ -1,6 +1,6 @@
 package rp.robotics.localisation;
 
-import rp.robotics.mapping.Heading;
+import rp.robotics.navigation.Heading;
 
 /**
  * Example structure for an action model that should move the probabilities 1

@@ -1,9 +1,9 @@
-package rp.robotics.mapping;
+package rp.robotics.navigation;
 
 /**
  * Enumeration for discrete headings that the robot might want to represent.
  * 
- * @author nah
+ * @author Nick Hawes
  * 
  */
 public enum Heading {

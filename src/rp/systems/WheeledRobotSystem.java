@@ -1,6 +1,7 @@
 package rp.systems;
 
 import lejos.robotics.navigation.DifferentialPilot;
+import rp.config.MobileRobotConfiguration;
 import rp.config.WheeledRobotConfiguration;
 
 /**
@@ -37,11 +38,11 @@ public class WheeledRobotSystem {
 
 	/*
 	 * Get configuration information for this robot.
+	 * 
 	 * @return
 	 */
 	public WheeledRobotConfiguration getConfig() {
 		return m_config;
 	}
 
-	
 }

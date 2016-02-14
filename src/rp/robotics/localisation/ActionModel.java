@@ -1,6 +1,6 @@
 package rp.robotics.localisation;
 
-import rp.robotics.mapping.Heading;
+import rp.robotics.navigation.Heading;
 
 /**
  * An interface for an action model to reason about movements over a grid map.

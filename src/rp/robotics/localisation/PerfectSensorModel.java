@@ -4,7 +4,7 @@
 package rp.robotics.localisation;
 
 import lejos.robotics.RangeReadings;
-import rp.robotics.mapping.Heading;
+import rp.robotics.navigation.Heading;
 
 /**
  * Empty sensor model for testing.

@@ -1,13 +1,7 @@
 package rp.robotics;
 
-import java.util.ArrayList;
-
-import lejos.geom.Line;
 import lejos.robotics.RegulatedMotor;
-import lejos.robotics.localization.PoseProvider;
 import lejos.robotics.navigation.DifferentialPilot;
-import lejos.robotics.navigation.Pose;
-import rp.config.RangeScannerDescription;
 import rp.config.WheeledRobotConfiguration;
 import rp.config.WheeledRobotDescription;
 import rp.robotics.localisation.ContinuousOdometryPoseProvider;
@@ -22,21 +16,10 @@ import rp.systems.WheeledRobotSystem;
  * @author Nick Hawes
  *
  */
-public class DifferentialDriveRobot implements PoseProvider,
+public class DifferentialDriveRobot extends MobileRobot implements
 		WheeledRobotDescription {
 
 	private final WheeledRobotConfiguration m_config;
-
-	private boolean m_inCollision = false;
-	private Pose m_collisionPose = null;
-
-	public float getWheelDiameter() {
-		return m_config.getWheelDiameter();
-	}
-
-	public float getTrackWidth() {
-		return m_config.getTrackWidth();
-	}
 
 	public RegulatedMotor getLeftWheel() {
 		return m_config.getLeftWheel();
@@ -46,38 +29,17 @@ public class DifferentialDriveRobot implements PoseProvider,
 		return m_config.getRightWheel();
 	}
 
-	public double getRobotLength() {
-		return m_config.getRobotLength();
-	}
-
 	private final DifferentialPilot m_pilot;
 
-	private final ContinuousOdometryPoseProvider m_odomPose;
-
 	public DifferentialDriveRobot(WheeledRobotConfiguration _config) {
+		this(_config, new WheeledRobotSystem(_config));
+	}
+
+	private DifferentialDriveRobot(WheeledRobotConfiguration _config,
+			WheeledRobotSystem _system) {
+		super(_config, new ContinuousOdometryPoseProvider(_system.getPilot()));
 		m_config = _config;
-		m_pilot = new WheeledRobotSystem(m_config).getPilot();
-		m_odomPose = new ContinuousOdometryPoseProvider(m_pilot);
-	}
-
-	/**
-	 * Returns the ground truth pose from the simulation.
-	 */
-	@Override
-	public Pose getPose() {
-		if (!m_inCollision) {
-			return m_odomPose.getPose();
-		} else {
-			return m_collisionPose;
-		}
-	}
-
-	/***
-	 * Changes the pose of the robot in the simulation.
-	 */
-	@Override
-	public void setPose(Pose _pose) {
-		m_odomPose.setPose(_pose);
+		m_pilot = _system.getPilot();
 	}
 
 	public DifferentialPilot getDifferentialPilot() {
@@ -85,27 +47,8 @@ public class DifferentialDriveRobot implements PoseProvider,
 	}
 
 	@Override
-	public Line[] getFootprint() {
-		return m_config.getFootprint();
-	}
-
-	// When the robot is in collision the wheels keep turning, but the pose of
-	// the robot doesn't change
-	public void startCollision() {
-		if (!m_inCollision) {
-			m_collisionPose = getPose();
-			m_inCollision = true;
-		}
-	}
-
-	@Override
-	public ArrayList<Line[]> getTouchSensors() {
-		return m_config.getTouchSensors();
-	}
-
-	@Override
-	public ArrayList<RangeScannerDescription> getRangeScanners() {
-		return m_config.getRangeScanners();
+	public float getWheelDiameter() {
+		return m_config.getWheelDiameter();
 	}
 
 }
