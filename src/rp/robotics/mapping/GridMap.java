@@ -1,10 +1,12 @@
 package rp.robotics.mapping;
 
+import java.awt.geom.Point2D;
+
 import lejos.geom.Line;
 import lejos.geom.Point;
 import lejos.robotics.navigation.Pose;
-import rp.robotics.mapping.IGridMap;
-import rp.robotics.mapping.LineMap;
+import rp.robotics.navigation.GridPose;
+import rp.robotics.navigation.Heading;
 
 /**
  * Creates a regular grid of points on top of a regular leJOS LineMap. The grid
@@ -118,6 +120,11 @@ public class GridMap extends LineMap implements IGridMap {
 		return m_xStart + (_x * m_cellSize);
 	}
 
+	public boolean isValidTransition(Point2D _start, Point2D _end) {
+		return isValidTransition((int) _start.getX(), (int) _start.getY(),
+				(int) _end.getX(), (int) _end.getY());
+	}
+
 	/**
 	 * Can the robot move from grid point x1,y1 to x2,y2 without passing through
 	 * an obstacle.
@@ -195,4 +202,14 @@ public class GridMap extends LineMap implements IGridMap {
 		return m_gridHeight;
 	}
 
+	public float getCellSize() {
+		return m_cellSize;
+	}
+
+	@Override
+	public Pose toPose(GridPose _pose) {
+		return new Pose(getXCoordinateOfGridPoint(_pose.getX()),
+				getYCoordinateOfGridPoint(_pose.getY()),
+				Heading.toDegrees(_pose.getHeading()));
+	}
 }

@@ -318,8 +318,8 @@ public class MapUtils {
 
 	public static LineMap create2015Map1() {
 
-		float height = 244f;
-		float width = 368f;
+		float height = 2.44f;
+		float width = 3.68f;
 
 		final boolean createBoxLinesAsBoxes = false;
 
@@ -329,31 +329,31 @@ public class MapUtils {
 		lines.addAll(createBox(0, 0, width, height, false));
 
 		// Top left box
-		lines.addAll(createBox(0, height - 30, 32, height - 60,
+		lines.addAll(createBox(0, height - 0.30f, 0.32f, height - 0.60f,
 				createBoxLinesAsBoxes));
 		// Bottom left box
-		lines.addAll(createBox(0, 65, 30, 31, createBoxLinesAsBoxes));
+		lines.addAll(createBox(0, 0.65f, 0.30f, 0.31f, createBoxLinesAsBoxes));
 		// Top right box
-		lines.addAll(createBox(width - 32, height - 30, width, height - 60,
+		lines.addAll(createBox(width - 0.32f, height - 0.30f, width, height - 0.60f,
 				createBoxLinesAsBoxes));
 		// Bottom right box
-		lines.addAll(createBox(width - 32, 61, width, 31, createBoxLinesAsBoxes));
+		lines.addAll(createBox(width - 0.32f, 0.61f, width, 0.31f, createBoxLinesAsBoxes));
 
 		// Top-edge box
-		lines.addAll(createBox(122, height, 122 + 90, height - 31,
+		lines.addAll(createBox(1.22f, height, 1.22f + 0.90f, height - 0.31f,
 				createBoxLinesAsBoxes));
 		// Bottom-edge box
-		lines.addAll(createBox(121, 31, 121 + 90, 0, createBoxLinesAsBoxes));
+		lines.addAll(createBox(1.21f, 0.31f, 1.21f + 0.90f, 0, createBoxLinesAsBoxes));
 
 		// Mid-left box
-		lines.addAll(createBox(119, height - 90, 119 + 32, height - (90 + 62),
+		lines.addAll(createBox(1.19f, height - .90f, 1.19f + .32f, height - (.90f + .62f),
 				createBoxLinesAsBoxes));
 		// Mid-right box
-		lines.addAll(createBox(119 + 32 + 62, height - 90, 119 + 32 + 62 + 32,
-				height - (90 + 62), createBoxLinesAsBoxes));
+		lines.addAll(createBox(1.19f + .32f + .62f, height - .90f, 1.19f + .32f + .62f + .32f,
+				height - (.90f + .62f), createBoxLinesAsBoxes));
 
-		lines.add(new Line(119 + 32, height - (90 + 62), 119 + 32 + 62, height
-				- (90 + 62)));
+		lines.add(new Line(1.19f + .32f, height - (.90f + .62f), 1.19f + .32f + .62f, height
+				- (.90f + .62f)));
 
 		Line[] lineArray = new Line[lines.size()];
 

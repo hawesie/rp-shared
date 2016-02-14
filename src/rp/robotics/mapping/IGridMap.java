@@ -1,6 +1,8 @@
 package rp.robotics.mapping;
 
 import lejos.geom.Point;
+import lejos.robotics.navigation.Pose;
+import rp.robotics.navigation.GridPose;
 
 /***
  * In interface to describe a map created from a regular grid of 2D positions,
@@ -84,5 +86,13 @@ public interface IGridMap {
 	 * @return
 	 */
 	public float rangeToObstacleFromGridPosition(int _x, int _y, float _heading);
+
+	/**
+	 * Convert the given grid pose to a continuous pose.
+	 * 
+	 * @param _pose
+	 * @return
+	 */
+	public Pose toPose(GridPose _pose);
 
 }

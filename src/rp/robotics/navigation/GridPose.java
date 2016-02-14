@@ -37,4 +37,45 @@ public class GridPose {
 		return (int) getPosition().getY();
 	}
 
+	public void rotateUpdate(int _amount) {
+		m_heading = m_heading.rotate(_amount);
+	}
+
+	/**
+	 * Move a grid position in the direction of the heading.
+	 */
+	public void moveUpdate() {
+		int dx = 0, dy = 0;
+
+		switch (m_heading) {
+		case PLUS_X:
+			dx = 1;
+			break;
+		case MINUS_X:
+			dx = -1;
+			break;
+		case PLUS_Y:
+			dy = 1;
+			break;
+		case MINUS_Y:
+			dy = -1;
+			break;
+		}
+		m_position.setLocation(getX() + dx, getY() + dy);
+	}
+
+	@Override
+	public GridPose clone() {
+		return new GridPose(getX(), getY(), getHeading());
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("GridPose: ");
+		sb.append(m_position);
+		sb.append(' ');
+		sb.append(m_heading);
+
+		return sb.toString();
+	}
 }

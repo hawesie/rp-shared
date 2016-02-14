@@ -82,4 +82,8 @@ public class MobileRobot implements PoseProvider, MobileRobotDescription {
 		return m_config.getRangeScanners();
 	}
 
+	public boolean isMoving() {
+		return false;
+	}
+
 }
