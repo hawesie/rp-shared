@@ -2,6 +2,9 @@ package rp.util;
 
 import java.util.Hashtable;
 
+import lejos.robotics.RangeReadings;
+import rp.config.RangeScannerDescription;
+
 /**
  * 
  * Utility functions to make using certain sensors easier.
@@ -37,6 +40,43 @@ public abstract class SensorUtils {
 
 	public static String toColourName(int _colourNumber) {
 		return COLOUR_NAMES.get(_colourNumber);
+	}
+
+	/**
+	 * Return a list of range readings which are the minimum for each individual
+	 * reading paired across the inputs.
+	 * 
+	 * @param _r1
+	 * @param _r2
+	 * @return
+	 */
+	public static RangeReadings getMinimumValues(RangeReadings _r1,
+			RangeReadings _r2) {
+		RangeReadings jointReadings = new RangeReadings(_r2.getNumReadings());
+
+		assert _r1.size() <= _r2.size();
+
+		for (int i = 0; i < _r2.getNumReadings(); i++) {
+
+			assert _r1.getAngle(i) == _r2.getAngle(i);
+
+			float map = _r1.getRange(i);
+			float obs = _r2.getRange(i);
+
+			// System.out.println("map: " + mapReadings.getRange(i));
+			// System.out.println("obs: " + obstacleReadings.getRange(i));
+
+			if (RangeScannerDescription.isValidReading(map)
+					&& RangeScannerDescription.isValidReading(obs)) {
+				jointReadings.setRange(i, _r1.getAngle(i), Math.min(map, obs));
+			} else if (!RangeScannerDescription.isValidReading(map)) {
+				jointReadings.setRange(i, _r1.getAngle(i), obs);
+			} else {
+				jointReadings.setRange(i, _r1.getAngle(i), map);
+			}
+
+		}
+		return jointReadings;
 	}
 
 }
