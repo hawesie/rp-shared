@@ -113,6 +113,49 @@ public class MapUtils {
 
 	}
 
+	
+	public static LineMap createRealWarehouse() {
+		float height = 244;
+		float width = 366;
+
+		ArrayList<Line> lines = new ArrayList<Line>();
+
+		// these are the walls for the world outline
+		lines.add(new Line(0f, 0f, width, 0f));
+		lines.add(new Line(width, 0f, width, height));
+		lines.add(new Line(width, height, 0f, height));
+		lines.add(new Line(0f, height, 0f, 0f));
+
+		lines.add(new Line(31f, 29f, 31f, height-61f));
+		lines.add(new Line(61f, 29f, 61f, height-61f));
+		lines.add(new Line(31f, 29f, 61f, 29f));
+		lines.add(new Line(31f, height-61f, 61f, height-61f));
+		
+		lines.add(new Line(124f, 28f, 124f, height-62f));
+		lines.add(new Line(154f, 28f, 154f, height-62f));
+		lines.add(new Line(124f, 28f, 154f, 28f));
+		lines.add(new Line(124f, height-62f, 154f, height-62f));
+		
+		lines.add(new Line(214f, 29f, 214f, height-61f));
+		lines.add(new Line(244f, 29f, 244f, height-61f));
+		lines.add(new Line(214f, 29f, 244f, 29f));
+		lines.add(new Line(214f, height-61f, 244f, height-61f));
+		
+		lines.add(new Line(308f, 30f, 308f, height-60f));
+		lines.add(new Line(338f, 30f, 338f, height-60f));
+		lines.add(new Line(308f, 30f, 338f, 30f));
+		lines.add(new Line(308f, height-60f, 338f, height-60f));
+
+		
+
+		Line[] lineArray = new Line[lines.size()];
+		lines.toArray(lineArray);
+
+		return new LineMap(lineArray, new Rectangle(0, 0, width, height));
+
+	}
+	
+	
 	public static LineMap create2014Map1() {
 
 		float height = 241f;
