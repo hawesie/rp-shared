@@ -131,25 +131,25 @@ public class MapUtils {
 		lines.add(new Line(width, height, 0f, height));
 		lines.add(new Line(0f, height, 0f, 0f));
 
-		lines.add(new Line(31f, 29f, 31f, height - 61f));
-		lines.add(new Line(61f, 29f, 61f, height - 61f));
-		lines.add(new Line(31f, 29f, 61f, 29f));
-		lines.add(new Line(31f, height - 61f, 61f, height - 61f));
+		lines.add(new Line(0.31f, 0.29f, 0.31f, height - 0.61f));
+		lines.add(new Line(0.61f, 0.29f, 0.61f, height - 0.61f));
+		lines.add(new Line(0.31f, 0.29f, 0.61f, 0.29f));
+		lines.add(new Line(0.31f, height - 0.61f, 0.61f, height - 0.61f));
 
-		lines.add(new Line(124f, 28f, 124f, height - 62f));
-		lines.add(new Line(154f, 28f, 154f, height - 62f));
-		lines.add(new Line(124f, 28f, 154f, 28f));
-		lines.add(new Line(124f, height - 62f, 154f, height - 62f));
+		lines.add(new Line(1.24f, 0.28f, 1.24f, height - 0.62f));
+		lines.add(new Line(1.54f, 0.28f, 1.54f, height - 0.62f));
+		lines.add(new Line(1.24f, 0.28f, 1.54f, 0.28f));
+		lines.add(new Line(1.24f, height - 0.62f, 1.54f, height - 0.62f));
 
-		lines.add(new Line(214f, 29f, 214f, height - 61f));
-		lines.add(new Line(244f, 29f, 244f, height - 61f));
-		lines.add(new Line(214f, 29f, 244f, 29f));
-		lines.add(new Line(214f, height - 61f, 244f, height - 61f));
+		lines.add(new Line(2.14f, 0.29f, 2.14f, height - 0.61f));
+		lines.add(new Line(2.44f, 0.29f, 2.44f, height - 0.61f));
+		lines.add(new Line(2.14f, 0.29f, 2.44f, 0.29f));
+		lines.add(new Line(2.14f, height - 0.61f, 2.44f, height - 0.61f));
 
-		lines.add(new Line(308f, 30f, 308f, height - 60f));
-		lines.add(new Line(338f, 30f, 338f, height - 60f));
-		lines.add(new Line(308f, 30f, 338f, 30f));
-		lines.add(new Line(308f, height - 60f, 338f, height - 60f));
+		lines.add(new Line(3.08f, 0.30f, 3.08f, height - 0.60f));
+		lines.add(new Line(3.38f, 0.30f, 3.38f, height - 0.60f));
+		lines.add(new Line(3.08f, 0.30f, 3.38f, 0.30f));
+		lines.add(new Line(3.08f, height - 0.60f, 3.38f, height - 0.60f));
 
 		Line[] lineArray = new Line[lines.size()];
 
