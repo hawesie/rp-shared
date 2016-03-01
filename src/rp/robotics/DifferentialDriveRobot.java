@@ -35,7 +35,7 @@ public class DifferentialDriveRobot extends MobileRobot implements
 		this(_config, new WheeledRobotSystem(_config));
 	}
 
-	private DifferentialDriveRobot(WheeledRobotConfiguration _config,
+	public DifferentialDriveRobot(WheeledRobotConfiguration _config,
 			WheeledRobotSystem _system) {
 		super(_config, new ContinuousOdometryPoseProvider(_system.getPilot()));
 		m_config = _config;

@@ -1,7 +1,6 @@
 package rp.systems;
 
 import lejos.robotics.navigation.DifferentialPilot;
-import rp.config.MobileRobotConfiguration;
 import rp.config.WheeledRobotConfiguration;
 
 /**
@@ -15,7 +14,7 @@ import rp.config.WheeledRobotConfiguration;
 public class WheeledRobotSystem {
 
 	private final WheeledRobotConfiguration m_config;
-	private DifferentialPilot m_differentialPilot;
+	protected DifferentialPilot m_differentialPilot;
 
 	public WheeledRobotSystem(WheeledRobotConfiguration _config) {
 		m_config = _config;

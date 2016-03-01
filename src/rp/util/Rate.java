@@ -20,4 +20,9 @@ public class Rate {
 		}
 		m_lastCall = System.nanoTime();
 	}
+	
+	@Override
+	public String toString() {
+		return "Rate: " + (1000000000 / m_sleepDurationNS) + "hz";
+	}
 }

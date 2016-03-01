@@ -1,5 +1,7 @@
 package rp.robotics.mapping;
 
+import static rp.robotics.mapping.MapUtils.createBox;
+
 import java.util.ArrayList;
 
 import lejos.geom.Line;
@@ -30,13 +32,10 @@ public class MapUtils {
 				new Line(_width, _height, 0f, _height),
 				new Line(0f, _height, 0f, 0f) };
 
-		LineMap map = new LineMap(lines, new Rectangle(0, 0, _width,
-				_height));
+		LineMap map = new LineMap(lines, new Rectangle(0, 0, _width, _height));
 
 		return map;
 	}
-
-	
 
 	/**
 	 * Turns a straight line into a box with 4 walls around the line at the
@@ -113,10 +112,16 @@ public class MapUtils {
 
 	}
 
-	
-	public static LineMap createRealWarehouse() {
-		float height = 244;
-		float width = 366;
+	public static GridMap createRealWarehouse() {
+
+		float height = 2.44f;
+		float width = 3.67f;
+
+		float xInset = 0.17f, yInstet = 0.155f;
+		int gridWitdth = 12, gridHeight = 8;
+		float cellSize = 0.30f;
+
+		// First ins 36 39 56 188
 
 		ArrayList<Line> lines = new ArrayList<Line>();
 
@@ -126,36 +131,34 @@ public class MapUtils {
 		lines.add(new Line(width, height, 0f, height));
 		lines.add(new Line(0f, height, 0f, 0f));
 
-		lines.add(new Line(31f, 29f, 31f, height-61f));
-		lines.add(new Line(61f, 29f, 61f, height-61f));
+		lines.add(new Line(31f, 29f, 31f, height - 61f));
+		lines.add(new Line(61f, 29f, 61f, height - 61f));
 		lines.add(new Line(31f, 29f, 61f, 29f));
-		lines.add(new Line(31f, height-61f, 61f, height-61f));
-		
-		lines.add(new Line(124f, 28f, 124f, height-62f));
-		lines.add(new Line(154f, 28f, 154f, height-62f));
-		lines.add(new Line(124f, 28f, 154f, 28f));
-		lines.add(new Line(124f, height-62f, 154f, height-62f));
-		
-		lines.add(new Line(214f, 29f, 214f, height-61f));
-		lines.add(new Line(244f, 29f, 244f, height-61f));
-		lines.add(new Line(214f, 29f, 244f, 29f));
-		lines.add(new Line(214f, height-61f, 244f, height-61f));
-		
-		lines.add(new Line(308f, 30f, 308f, height-60f));
-		lines.add(new Line(338f, 30f, 338f, height-60f));
-		lines.add(new Line(308f, 30f, 338f, 30f));
-		lines.add(new Line(308f, height-60f, 338f, height-60f));
+		lines.add(new Line(31f, height - 61f, 61f, height - 61f));
 
-		
+		lines.add(new Line(124f, 28f, 124f, height - 62f));
+		lines.add(new Line(154f, 28f, 154f, height - 62f));
+		lines.add(new Line(124f, 28f, 154f, 28f));
+		lines.add(new Line(124f, height - 62f, 154f, height - 62f));
+
+		lines.add(new Line(214f, 29f, 214f, height - 61f));
+		lines.add(new Line(244f, 29f, 244f, height - 61f));
+		lines.add(new Line(214f, 29f, 244f, 29f));
+		lines.add(new Line(214f, height - 61f, 244f, height - 61f));
+
+		lines.add(new Line(308f, 30f, 308f, height - 60f));
+		lines.add(new Line(338f, 30f, 338f, height - 60f));
+		lines.add(new Line(308f, 30f, 338f, 30f));
+		lines.add(new Line(308f, height - 60f, 338f, height - 60f));
 
 		Line[] lineArray = new Line[lines.size()];
+
 		lines.toArray(lineArray);
 
-		return new LineMap(lineArray, new Rectangle(0, 0, width, height));
-
+		return new GridMap(gridWitdth, gridHeight, xInset, yInstet, cellSize,
+				new LineMap(lineArray, new Rectangle(0, 0, width, height)));
 	}
-	
-	
+
 	public static LineMap create2014Map1() {
 
 		float height = 241f;
@@ -377,26 +380,29 @@ public class MapUtils {
 		// Bottom left box
 		lines.addAll(createBox(0, 0.65f, 0.30f, 0.31f, createBoxLinesAsBoxes));
 		// Top right box
-		lines.addAll(createBox(width - 0.32f, height - 0.30f, width, height - 0.60f,
-				createBoxLinesAsBoxes));
+		lines.addAll(createBox(width - 0.32f, height - 0.30f, width,
+				height - 0.60f, createBoxLinesAsBoxes));
 		// Bottom right box
-		lines.addAll(createBox(width - 0.32f, 0.61f, width, 0.31f, createBoxLinesAsBoxes));
+		lines.addAll(createBox(width - 0.32f, 0.61f, width, 0.31f,
+				createBoxLinesAsBoxes));
 
 		// Top-edge box
 		lines.addAll(createBox(1.22f, height, 1.22f + 0.90f, height - 0.31f,
 				createBoxLinesAsBoxes));
 		// Bottom-edge box
-		lines.addAll(createBox(1.21f, 0.31f, 1.21f + 0.90f, 0, createBoxLinesAsBoxes));
+		lines.addAll(createBox(1.21f, 0.31f, 1.21f + 0.90f, 0,
+				createBoxLinesAsBoxes));
 
 		// Mid-left box
-		lines.addAll(createBox(1.19f, height - .90f, 1.19f + .32f, height - (.90f + .62f),
-				createBoxLinesAsBoxes));
+		lines.addAll(createBox(1.19f, height - .90f, 1.19f + .32f, height
+				- (.90f + .62f), createBoxLinesAsBoxes));
 		// Mid-right box
-		lines.addAll(createBox(1.19f + .32f + .62f, height - .90f, 1.19f + .32f + .62f + .32f,
-				height - (.90f + .62f), createBoxLinesAsBoxes));
+		lines.addAll(createBox(1.19f + .32f + .62f, height - .90f,
+				1.19f + .32f + .62f + .32f, height - (.90f + .62f),
+				createBoxLinesAsBoxes));
 
-		lines.add(new Line(1.19f + .32f, height - (.90f + .62f), 1.19f + .32f + .62f, height
-				- (.90f + .62f)));
+		lines.add(new Line(1.19f + .32f, height - (.90f + .62f),
+				1.19f + .32f + .62f, height - (.90f + .62f)));
 
 		Line[] lineArray = new Line[lines.size()];
 
@@ -418,8 +424,8 @@ public class MapUtils {
 	 *            The y-coordinate of the bottom side.
 	 * @return An arraylist of lines that make up that box.
 	 */
-	public static ArrayList<Line> createBox(float left, float top,
-			float right, float bottom, boolean asLineBoxes) {
+	public static ArrayList<Line> createBox(float left, float top, float right,
+			float bottom, boolean asLineBoxes) {
 		ArrayList<Line> boxLines = new ArrayList<Line>();
 
 		if (asLineBoxes) {
