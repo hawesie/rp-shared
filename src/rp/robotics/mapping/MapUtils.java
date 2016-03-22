@@ -112,6 +112,48 @@ public class MapUtils {
 
 	}
 
+	public static GridMap createMarkingWarehouseMap() {
+
+		float height = 2.44f;
+		float width = 3.67f;
+
+		float xInset = 0.17f, yInstet = 0.155f;
+		int gridWitdth = 12, gridHeight = 8;
+		float cellSize = 0.30f;
+
+		ArrayList<Line> lines = new ArrayList<Line>();
+
+		// these are the walls for the world outline
+		lines.add(new Line(0f, 0f, width, 0f));
+		lines.add(new Line(width, 0f, width, height));
+		lines.add(new Line(width, height, 0f, height));
+		lines.add(new Line(0f, height, 0f, 0f));
+
+		lines.add(new Line(0.63f, 0.57f, 0.63f, 0.57f + 1.255f));
+		lines.add(new Line(0.63f, 0.57f + 1.255f, 0.63f + 0.3f, 0.57f + 1.255f));
+		lines.add(new Line(0.63f + 0.3f, 0.57f + 1.255f, 0.63f + 0.3f, 0.57f));
+		lines.add(new Line(0.63f + 0.3f, 0.57f, 0.63f, 0.57f));
+
+		lines.add(new Line(1.515f, 0.89f, 1.515f, 0.89f + 0.62f));
+		lines.add(new Line(1.515f, 0.89f + 0.62f, 1.515f + 0.62f, 0.89f + 0.62f));
+		lines.add(new Line(1.515f + 0.62f, 0.89f + 0.62f, 1.515f + 0.62f, 0.89f));
+		lines.add(new Line(1.515f + 0.62f, 0.89f, 1.515f, 0.89f));
+
+		lines.add(new Line(width - 0.3f - 0.63f, 0.57f, width - 0.3f - 0.63f,
+				0.57f + 1.255f));
+		lines.add(new Line(width - 0.3f - 0.63f, 0.57f + 1.255f, width - 0.63f,
+				0.57f + 1.255f));
+		lines.add(new Line(width - 0.63f, 0.57f + 1.255f, width - 0.63f, 0.57f));
+		lines.add(new Line(width - 0.63f, 0.57f, width - 0.3f - 0.63f, 0.57f));
+
+		Line[] lineArray = new Line[lines.size()];
+
+		lines.toArray(lineArray);
+
+		return new GridMap(gridWitdth, gridHeight, xInset, yInstet, cellSize,
+				new LineMap(lineArray, new Rectangle(0, 0, width, height)));
+	}
+
 	public static GridMap createRealWarehouse() {
 
 		float height = 2.44f;
