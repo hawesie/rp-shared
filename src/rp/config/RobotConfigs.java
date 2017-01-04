@@ -22,18 +22,16 @@ public class RobotConfigs {
 
 	/**
 	 * Configuration for Nick's Expressbot build. The numbers may be different
-	 * for you. Measurements in mm.
+	 * for you. Measurements in metres.
 	 */
-	public static final MobileRobotConfiguration EXPRESS_BOT = new WheeledRobotConfiguration(
-			0.056f, 0.163f, 0.210f, Motor.B, Motor.C);
+	public static final WheeledRobotConfiguration EXPRESS_BOT = new WheeledRobotConfiguration(
+			0.056f, 0.163f, 0.210f, Motor.A, Motor.C);
 
 	/**
 	 * Configuration for Nick's Castorbot build. The numbers may be different
-	 * for you. Measurements in mm.
+	 * for you. Measurements in metres.
 	 */
-	public static final MobileRobotConfiguration CASTOR_BOT = new WheeledRobotConfiguration(
-			0.056f, 0.120f, 0.230f, Motor.B, Motor.C);
-	
-	
+	public static final WheeledRobotConfiguration CASTOR_BOT = new WheeledRobotConfiguration(
+			0.056f, 0.120f, 0.230f, Motor.A, Motor.C);
 
 }
