@@ -1,9 +1,6 @@
 package rp.robotics.mapping;
 
-import static rp.robotics.mapping.MapUtils.createBox;
-
 import java.util.ArrayList;
-
 import lejos.geom.Line;
 import lejos.geom.Rectangle;
 import lejos.robotics.navigation.Move;
@@ -130,20 +127,24 @@ public class MapUtils {
 		lines.add(new Line(0f, height, 0f, 0f));
 
 		lines.add(new Line(0.63f, 0.57f, 0.63f, 0.57f + 1.255f));
-		lines.add(new Line(0.63f, 0.57f + 1.255f, 0.63f + 0.3f, 0.57f + 1.255f));
+		lines.add(
+				new Line(0.63f, 0.57f + 1.255f, 0.63f + 0.3f, 0.57f + 1.255f));
 		lines.add(new Line(0.63f + 0.3f, 0.57f + 1.255f, 0.63f + 0.3f, 0.57f));
 		lines.add(new Line(0.63f + 0.3f, 0.57f, 0.63f, 0.57f));
 
 		lines.add(new Line(1.515f, 0.89f, 1.515f, 0.89f + 0.62f));
-		lines.add(new Line(1.515f, 0.89f + 0.62f, 1.515f + 0.62f, 0.89f + 0.62f));
-		lines.add(new Line(1.515f + 0.62f, 0.89f + 0.62f, 1.515f + 0.62f, 0.89f));
+		lines.add(
+				new Line(1.515f, 0.89f + 0.62f, 1.515f + 0.62f, 0.89f + 0.62f));
+		lines.add(
+				new Line(1.515f + 0.62f, 0.89f + 0.62f, 1.515f + 0.62f, 0.89f));
 		lines.add(new Line(1.515f + 0.62f, 0.89f, 1.515f, 0.89f));
 
 		lines.add(new Line(width - 0.3f - 0.63f, 0.57f, width - 0.3f - 0.63f,
 				0.57f + 1.255f));
 		lines.add(new Line(width - 0.3f - 0.63f, 0.57f + 1.255f, width - 0.63f,
 				0.57f + 1.255f));
-		lines.add(new Line(width - 0.63f, 0.57f + 1.255f, width - 0.63f, 0.57f));
+		lines.add(
+				new Line(width - 0.63f, 0.57f + 1.255f, width - 0.63f, 0.57f));
 		lines.add(new Line(width - 0.63f, 0.57f, width - 0.3f - 0.63f, 0.57f));
 
 		Line[] lineArray = new Line[lines.size()];
@@ -198,6 +199,51 @@ public class MapUtils {
 		lines.toArray(lineArray);
 
 		return new GridMap(gridWitdth, gridHeight, xInset, yInstet, cellSize,
+				new LineMap(lineArray, new Rectangle(0, 0, width, height)));
+	}
+
+	public static GridMap createRealWarehouse2016() {
+
+		float height = 2.48f;
+		float width = 3.68f;
+
+		float xInset = 0.14f, yInset = 0.15f;
+		int gridWidth = 12, gridHeight = 8;
+		float cellSize = 0.30f;
+
+		ArrayList<Line> lines = new ArrayList<Line>();
+
+		// these are the walls for the world outline
+		lines.add(new Line(0f, 0f, width, 0f));
+		lines.add(new Line(width, 0f, width, height));
+		lines.add(new Line(width, height, 0f, height));
+		lines.add(new Line(0f, height, 0f, 0f));
+
+		lines.add(new Line(0.28f, 0.31f, 0.28f, 1.83f));
+		lines.add(new Line(0.58f, 0.31f, 0.58f, 1.83f));
+		lines.add(new Line(0.28f, 0.31f, 0.58f, 0.31f));
+		lines.add(new Line(0.28f, 1.83f, 0.58f, 1.83f));
+
+		lines.add(new Line(1.20f, 0.28f, 1.20f, 1.85f));
+		lines.add(new Line(1.50f, 0.28f, 1.50f, 1.85f));
+		lines.add(new Line(1.20f, 0.28f, 1.50f, 0.28f));
+		lines.add(new Line(1.20f, 1.85f, 1.50f, 1.85f));
+
+		lines.add(new Line(2.13f, 0.29f, 2.13f, 1.84f));
+		lines.add(new Line(2.44f, 0.29f, 2.44f, 1.84f));
+		lines.add(new Line(2.13f, 0.29f, 2.44f, 0.29f));
+		lines.add(new Line(2.13f, 1.84f, 2.44f, 1.84f));
+
+		lines.add(new Line(3.05f, 0.30f, 3.05f, 1.83f));
+		lines.add(new Line(3.35f, 0.30f, 3.35f, 1.83f));
+		lines.add(new Line(3.05f, 0.30f, 3.35f, 0.30f));
+		lines.add(new Line(3.05f, 1.83f, 3.35f, 1.83f));
+
+		Line[] lineArray = new Line[lines.size()];
+
+		lines.toArray(lineArray);
+
+		return new GridMap(gridWidth, gridHeight, xInset, yInset, cellSize,
 				new LineMap(lineArray, new Rectangle(0, 0, width, height)));
 	}
 
@@ -436,8 +482,8 @@ public class MapUtils {
 				createBoxLinesAsBoxes));
 
 		// Mid-left box
-		lines.addAll(createBox(1.19f, height - .90f, 1.19f + .32f, height
-				- (.90f + .62f), createBoxLinesAsBoxes));
+		lines.addAll(createBox(1.19f, height - .90f, 1.19f + .32f,
+				height - (.90f + .62f), createBoxLinesAsBoxes));
 		// Mid-right box
 		lines.addAll(createBox(1.19f + .32f + .62f, height - .90f,
 				1.19f + .32f + .62f + .32f, height - (.90f + .62f),
@@ -509,8 +555,8 @@ public class MapUtils {
 	 * @return
 	 */
 	public static float changeInX(Pose _previousPose, Move _move) {
-		return (_move.getDistanceTraveled() * ((float) Math.cos(Math
-				.toRadians(_previousPose.getHeading()))));
+		return (_move.getDistanceTraveled() * ((float) Math
+				.cos(Math.toRadians(_previousPose.getHeading()))));
 	}
 
 	/**
@@ -521,7 +567,7 @@ public class MapUtils {
 	 * @return
 	 */
 	public static float changeInY(Pose _previousPose, Move _move) {
-		return (_move.getDistanceTraveled() * ((float) Math.sin(Math
-				.toRadians(_previousPose.getHeading()))));
+		return (_move.getDistanceTraveled() * ((float) Math
+				.sin(Math.toRadians(_previousPose.getHeading()))));
 	}
 }
